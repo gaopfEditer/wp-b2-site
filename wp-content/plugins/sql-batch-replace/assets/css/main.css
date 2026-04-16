@@ -1,0 +1,199 @@
+/*
+ * @Author: 子比主题老唐-Qinver
+ * @Url: zibll.com
+ * @Date: 2023-10-12 12:18:41
+ * @LastEditTime: 2023-10-17 11:16:46
+ * @Read me : 本工具为免费开源工具，您可以自由使用和分享，如您需要分享或二次开发，请务必保留并在显眼处体现作者名，以及www.zibll.com的网站
+ * @Read me : 不要用于任何商业用途，否则将依法追究相关责任，谢谢合作！
+ */
+
+.sql-replace-wrap {
+    max-width: 700px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 166, 166, 0.2);
+    overflow: hidden;
+}
+
+.sql-replace-wrap .sql-header {
+    padding: 20px;
+    color: #fff;
+    background: linear-gradient(135deg, #f97794 10%, #8d43ca 100%);
+}
+
+.sql-replace-wrap .sql-titel {
+    font-weight: bold;
+    font-size: 22px;
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.sql-replace-wrap .sql-footer {
+    background: #f4f4f4;
+    padding: 10px 20px;
+    color: #777;
+}
+
+.sql-replace-wrap .sql-ad {
+    color: #f76235;
+}
+
+.sql-replace-wrap .sql-by {
+    text-align: right;
+}
+
+.sql-replace-wrap .sql-header a {
+    color: #fff;
+}
+
+.sql-replace-wrap .sql-content-wrap {
+    padding: 20px;
+}
+
+.sql-replace-wrap .sql-input {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #0a78ee;
+    font-weight: bold;
+}
+
+.sql-replace-wrap .sql-input > * {
+    margin: 6px;
+}
+
+.sql-replace-wrap .sql-ks {
+    color: #3a96f7;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(59, 150, 247, 0.4);
+    padding: 6px 0;
+    margin: 6px;
+}
+
+.sql-replace-wrap .sql-warning {
+    padding: 10px 16px;
+    background: #fbefef;
+    color: #f9672e;
+    margin: 16px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+.sql-replace-wrap .sql-success {
+    background: #eaf3f8;
+    color: #1299ff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #c3e2fb;
+    border-radius: 4px;
+}
+
+.sql-replace-wrap .sql-notice-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.sql-replace-wrap .sql-content-wrap {
+    padding: 12px;
+    margin: 20px;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+}
+
+.sql-replace-wrap .sql-btns {
+    text-align: right;
+    margin: 10px 5px 16px;
+}
+
+.sql-replace-wrap .sql-btn {
+    background: linear-gradient(135deg, #65bff7 10%, #0d67b9 100%) !important;
+    border: none;
+    border-radius: 50px;
+    transition: 0.15s;
+    padding: 6px 30px;
+    line-height: 1.4;
+    color: #fff !important;
+    text-decoration: none;
+    margin: 5px;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.sql-replace-wrap .sql-btn.sql-submit {
+    background: linear-gradient(135deg, #ffa28d 10%, #fb2727 100%) !important;
+}
+
+.sql-replace-wrap .sql-btn .sql-loading {
+    --this-color: #fff;
+}
+
+.sql-replace-wrap .sql-btn[disabled],
+.sql-replace-wrap .sql-btn:hover {
+    opacity: 0.6;
+}
+.sql-replace-wrap .sql-notice {
+    margin-top: 10px !important;
+    padding: 10px;
+    border: 1px solid #eee;
+    background: #f2f2f2;
+    font-size: 13px;
+    border-radius: 4px;
+    color: #888;
+}
+
+.sql-replace-wrap .sql-notice.error {
+    padding: 10px;
+    background: rgba(252, 33, 33, 0.05);
+    color: #ff4c31;
+}
+
+.sql-replace-wrap .sql-loading {
+    content: '';
+    width: 0.7em;
+    height: 0.7em;
+    display: inline-block;
+    border: 0.1em solid transparent;
+    border-radius: 50%;
+    border-top-color: var(--this-color);
+    border-bottom-color: var(--this-color);
+    -webkit-animation: sql-replace-rotate 1s cubic-bezier(0.7, 0.1, 0.31, 0.9) infinite;
+    animation: sql-replace-rotate 1s cubic-bezier(0.7, 0.1, 0.31, 0.9) infinite;
+    margin-right: 6px;
+    --this-color: #777;
+}
+
+@-webkit-keyframes sql-replace-rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sql-replace-rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.sql-replace-wrap .sql-notice .sql-warning {
+    margin: 0;
+    padding: 6px 10px;
+    border: 1px solid #fbc3c3;
+    margin-bottom: 10px;
+}
+
+.sql-replace-wrap .sql-key {
+    font-weight: bold;
+    background: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+}

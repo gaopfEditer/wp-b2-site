@@ -1,0 +1,192 @@
+# Copyright (C) 2023 数据库批量替换
+# This file is distributed under the same license as the 数据库批量替换 package.
+msgid ""
+msgstr ""
+"Project-Id-Version: 数据库批量替换 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sql-batch-replace\n"
+"POT-Creation-Date: 2023-10-17 04:15:43+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: func.php:46
+msgid "请使用数据库批量替换插件修改网站地址，一键完美替换"
+msgstr ""
+
+#: func.php:46
+msgid "立即修改"
+msgstr ""
+
+#: func.php:60
+msgid "数据库批量替换"
+msgstr ""
+
+#: func.php:71 func.php:130
+msgid "开始替换"
+msgstr ""
+
+#: func.php:82
+msgid "请确认将{old}替换为{new}"
+msgstr ""
+
+#: func.php:83
+msgid "共计替换{count}条数据，替换后无法撤回，请确保已备份数据库！"
+msgstr ""
+
+#: func.php:84
+msgid "替换明细：表 => 列 => 数量 || 序列化数量"
+msgstr ""
+
+#: func.php:85
+msgid "重新查询"
+msgstr ""
+
+#: func.php:86
+msgid "没有找到匹配的替换内容"
+msgstr ""
+
+#: func.php:87
+msgid "请再次确认替换【{old}】为【{new}】吗？"
+msgstr ""
+
+#: func.php:88
+msgid "替换参数错误，请刷新后重试"
+msgstr ""
+
+#: func.php:89
+msgid "正在批量替换中，请稍后..."
+msgstr ""
+
+#: func.php:90
+msgid "数据替换明细：表 => 列 => 数量"
+msgstr ""
+
+#: func.php:91
+msgid "序列化数据替换明细：表 => 列 => 数量"
+msgstr ""
+
+#: func.php:92
+msgid "操作成功"
+msgstr ""
+
+#: func.php:93
+msgid "已将{old}替换为{new}"
+msgstr ""
+
+#: func.php:110
+msgid "将"
+msgstr ""
+
+#: func.php:114
+msgid "替换为"
+msgstr ""
+
+#: func.php:118
+msgid "快速的批量替换数据库中的旧内容为新的内容，适用于网站换域名、加证书后网址改为https、更换云储存后批量更换媒体链接等操作"
+msgstr ""
+
+#: func.php:119
+msgid "操作仅需两步，全程自动化，快捷方便！"
+msgstr ""
+
+#: func.php:120
+msgid "工具会自动分析数据库表，支持所有主题及插件！"
+msgstr ""
+
+#: func.php:121
+msgid "自动判断序列化数据，序列化数据自动转义并替换，确保数据安全，真正意义上解决SQL命令批量替换会出现的各种bug！"
+msgstr ""
+
+#: func.php:121 func.php:127
+msgid "【了解相关原理】"
+msgstr ""
+
+#: func.php:123
+msgid "注意事项："
+msgstr ""
+
+#: func.php:124
+msgid "1.使用此工具前，请务必先备份数据库！！！！以避免操作错误带来的损失"
+msgstr ""
+
+#: func.php:125
+msgid "2.替换时，请勿输入很短的替换值，容易误修改"
+msgstr ""
+
+#: func.php:126
+msgid "3.此工具仅批量修改数据库内容，对修改后会导致的结果无法判断，如果您不清楚您的操作会带来什么结果，请谨慎操作"
+msgstr ""
+
+#: func.php:127
+msgid "4.此工具可无脑使用，但仍建议先了解数据库相关原理"
+msgstr ""
+
+#: func.php:131
+msgid "下一步"
+msgstr ""
+
+#: func.php:131
+msgid "确认替换"
+msgstr ""
+
+#: func.php:134
+msgid "数据库批量替换小工具"
+msgstr ""
+
+#: func.php:134
+msgid "查看官方教程"
+msgstr ""
+
+#: func.php:134
+msgid "zibll子比主题是一款功能强大、设计精美的资讯、商城、社区、论坛主题，如果您还不知道，那就OUT了，点此了解详情"
+msgstr ""
+
+#: func.php:389 func.php:430
+msgid "环境异常或登录状态已失效，请刷新页面重试"
+msgstr ""
+
+#: func.php:394 func.php:435
+msgid "权限不足或登录状态已失效，请刷新页面重试"
+msgstr ""
+
+#: func.php:401 func.php:442
+msgid "请输入需要替换的旧内容"
+msgstr ""
+
+#: func.php:405 func.php:446
+msgid "请输入需要替换的新内容"
+msgstr ""
+
+#: func.php:409 func.php:450
+msgid "新内容不能与旧内容相同"
+msgstr ""
+
+#: func.php:414
+msgid "您输入的内容字符数量较少，替换时容易出现误修改情况，请认真确认"
+msgstr ""
+
+#: func.php:456
+msgid "数据库替换完成，如您替换了网站域名，请自行跳转到新地址访问"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "数据库批量替换"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.zibll.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "数据一键批量替换小工具，适用于网站换域名、加证书后网址改为https、更换云储存后批量更换媒体链接等操作"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "子比主题老唐-Qinver"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.zibll.com"
+msgstr ""

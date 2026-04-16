@@ -1,0 +1,199 @@
+<?php
+use B2\Modules\Common\Shop;
+$post_id = get_the_id();
+$imgs = Shop::get_product_images($post_id);
+$excerpt = get_post_field('post_excerpt');
+$attrs = Shop::shop_single_attrs($post_id);
+?>
+<div id="shop-single">
+    <div class="box mg-b b2-radius">
+        <div class="shop-single-top" ref="shopSingle" data-id="<?php echo $post_id; ?>">
+            <div class="shop-single-imgs">
+                <?php 
+                    //幻灯的设置项
+                    $settings = array(
+                        'wrapAround'=>true,
+                        'fullscreen'=>true,
+                        'autoPlay'=> 4000,
+                        'fade'=> true,
+                        "imagesLoaded"=> true,
+                        "freeScroll"=>false,
+                        "prevNextButtons"=>false,
+                        'pageDots'=> 1
+                        //'groupCells'=> true,
+                        //'groupCells'=> 4
+                    );
+
+                    $settings = json_encode($settings,true);
+                    $slider_setting = "data-flickity='".$settings."'";
+                ?>
+                <div class="shop-single-img-box">
+                    <div <?php echo $slider_setting; ?>>
+                    <?php
+                        if(!empty($imgs)){
+                            foreach ($imgs as $k => $v) {
+                                echo '<div class="shop-box-img"><img class="b2-radius" src="'.$v.'" /></div>';
+                            }
+                        }else{
+                            echo '<div class="shop-box-img" v-if="data !== \'\' && data['.$post_id.'].thumb"><img :src="data['.$post_id.'].thumb"/></div>';
+                        }
+                    ?>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-single-data">
+                <div class="shop-breadcrumb b2-hover">
+                    <?php echo Shop::shop_single_breadcrumb($post_id); ?>
+                </div>
+                <div class="">
+                    <h1><?php echo get_the_title($post_id); ?></h1>
+                </div>
+                <div class="shop-single-data-list">
+                    <ul>
+                        <li class="shop-single-data-price">
+                            <div class="shop-single-data-value">
+                                <div class="shop-item-normal-price shop-item-delete" v-if="data != '' && data[<?php echo $post_id; ?>].price.price" v-cloak>
+                                    <span class="shop-single-price-title"><?php echo __('价格：','b2'); ?></span>
+                                    <span class="shop-single-price">
+                                        <i><?php echo B2_MONEY_SYMBOL; ?></i>    
+                                        <b v-if="data != ''" v-text="data[<?php echo $post_id; ?>].price.price"></b>
+                                        <b v-else>--</b>
+                                    </span>
+                                </div>
+                                <div class="shop-item-u-price">
+                                    <span class="shop-single-price-title"><?php echo __('积分：','b2'); ?></span>
+                                    <span class="shop-single-price">
+                                        <i><?php echo b2_get_icon('b2-jifen'); ?></i>
+                                        <b v-if="data != ''" v-text="data[<?php echo $post_id; ?>].price.credit"></b>
+                                        <b v-else>--</b>
+                                    </span>
+                                </div>
+                                <span class="views"><?php echo b2_get_icon('b2-hot'); ?><b v-text="data[<?php echo $post_id; ?>].views" v-if="data !== ''"></b></span>
+                            </div>
+                        </li>
+                        <li v-if="data != '' && data[<?php echo $post_id; ?>].can_buy.roles.length > 0">
+                            <div class="shop-single-data-title">
+                                <?php echo __('允许参与','b2'); ?>
+                            </div>
+                            <div class="shop-single-data-value shop-single-data-roles">
+                                <div v-for="item in data[<?php echo $post_id; ?>].can_buy.roles" v-html="item"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="shop-single-data-title">
+                                <?php echo __('商品类型','b2'); ?>
+                            </div>
+                            <div class="shop-single-data-value">
+                                <span v-text="data[<?php echo $post_id; ?>].commodity == 1 ? '<?php echo __('实物','b2'); ?>' : '<?php echo __('虚拟物品','b2'); ?>'" v-if="data !== ''"></span>
+                                <span v-else>--</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="shop-single-data-title">
+                                <?php echo __('总数','b2'); ?>
+                            </div>
+                            <div class="shop-single-data-value">
+                                <span v-text="data[<?php echo $post_id; ?>].stock.total" v-if="data !== ''"></span>
+                                <span v-else>--</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="shop-single-data-title">
+                                <?php echo __('抽中','b2'); ?>
+                            </div>
+                            <div class="shop-single-data-value">
+                                <span v-text="data[<?php echo $post_id; ?>].stock.sell" v-if="data !== ''"></span>
+                                <span v-else>--</span>
+                            </div>
+                        </li>
+                        <li class="shop-single-data-address-picked" v-if="showAddress('<?php echo $post_id; ?>')" v-cloak>
+                            <p class="shop-single-data-address-desc"><?php echo __('实物收货地址（必选）：'); ?><span @click="showAddressBox = true"><?php echo b2_get_icon('b2-zidingyi').__('编辑地址','b2'); ?></span></p>
+                            <p v-if="pickedAddress !== ''" class="shop-single-data-address-lisst"><span v-text="address.addresses[pickedAddress].address"></span><span v-text="address.addresses[pickedAddress].name"></span><span v-text="address.addresses[pickedAddress].phone"></span></p>
+                            <p v-else><?php echo __('收货地址为空，请添加一个收货地址！','b2'); ?></p>
+                        </li>
+                        <li class="shop-single-data-address-picked" v-if="showEmail('<?php echo $post_id; ?>')" v-cloak>
+                            <p class="shop-single-data-address-desc"><?php echo __('虚拟物品接收邮箱（必填）：'); ?><span @click="showEmailBox = true"><?php echo b2_get_icon('b2-zidingyi').__('更换邮箱','b2'); ?></span></p>
+                            <p v-if="pickedEmail !== ''" class="shop-single-data-address-lisst" v-text="pickedEmail"></p>
+                            <p v-else><?php echo __('请设置一个邮箱，用以接收购买信息！','b2'); ?></p>
+                        </li>
+                    </ul>
+                    <div class="lottery-box">
+                        <div class="lottery-box-one">
+                            <span><b v-text="fir[0]"></b></span>
+                            <span><b v-text="fir[1]"></b></span>
+                            <span><b v-text="fir[2]"></b></span>
+                            <span><b v-text="fir[3]"></b></span>
+                        </div>
+                        <div :class="'lottery-box-two ' + (m <= 0 ? 'picked ' : '') + (this.resData.fir === this.resData.sec && this.resData.fir !== 0 && m <= 0 ? 'success' : '')"><b v-text="f"></b></div>
+                        <div class="lottery-box-three">
+                            <span><b v-text="sec[0]"></b></span>
+                            <span><b v-text="sec[1]"></b></span>
+                            <span><b v-text="sec[2]"></b></span>
+                            <span><b v-text="sec[3]"></b></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lottery-desc">
+                    <p v-if="m <= 0" v-cloak>
+                        <span v-if="this.resData.fir === this.resData.sec && this.resData.fir !== 0" class="green"><?php echo sprintf(__('恭喜，您中奖啦！请刷新本页：%s刷新%s','b2'),'<a href="javascript:void(0)" @click="reflush()">','</a>'); ?></span>
+                        <span v-else class="red"><?php echo __('运气稍微差了一点，再接再厉！','b2'); ?></span>
+                    </p>
+                    <p v-else><?php echo __('两边数字相等，代表中奖！'); ?></p>
+                </div>
+                <div class="mg-t shop-single-action">
+                    <div class="shop-single-action-left">
+                        <button :disabled="disabled(<?php echo $post_id; ?>)" v-text="data !== '' ? data[<?php echo $post_id; ?>].can_buy.text : '<?php echo __('抽奖','b2'); ?>'" @click="lottery('<?php echo $post_id; ?>')"></button>
+                    </div>
+                    <div class="shop-single-action-right" v-if="postData !== ''">
+                        <button :class="['text favorite-button',{'sc':postData.favorites_isset}]" @click="postFavoriteAc" v-cloak><?php echo b2_get_icon('b2-shoucang'); ?><span v-text="postData.favorites_isset ? '<?php echo __('已收藏','b2'); ?>' : '<?php echo __('收藏','b2'); ?>'"></span></button>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo B2\Modules\Templates\VueTemplates::address_box(); ?>
+        <?php echo B2\Modules\Templates\VueTemplates::email_box(); ?>
+    </div>
+    <div class="buy-resout mg-b box b2-radius" v-cloak v-if="resout.data && resout.commodity === 0">
+        <div class="buy-resout-title shop-single-attr-title">
+            <h2><?php echo __('购买结果','b2'); ?></h2>
+            <p></p>
+        </div>
+        <div class="buy-resout-box">
+            <pre v-html="resout.data"></pre>
+        </div>
+    </div>
+</div>
+<?php if(!empty($attrs)){ ?>
+    <div class="box b2-radius mg-b shop-single-attr">
+        <div class="shop-single-attr-title"><?php echo __('商品属性','b2'); ?></div>
+        <div class="shop-single-attr-data">
+            <ul>
+                <?php
+                    foreach ($attrs as $v) {
+                        echo '<li><span class="shop-single-attr-k">'.$v['k'].'：</span><span class="shop-single-attr-v">'.$v['v'].'</span></li>';
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
+<?php } ?>
+<div class="box b2-radius">
+    <div class="shop-single-attr-title"><?php echo __('商品简介','b2'); ?></div>
+    <article class="single-article">
+        <div class="entry-content">
+            <?php do_action('b2_single_post_content_before'); ?>
+            
+            <?php if($excerpt){ ?>
+                <div class="content-excerpt">
+                    <?php echo get_the_excerpt(); ?>
+                </div>
+            <?php } ?>
+            
+            <?php the_content(); ?>
+
+            <?php do_action('b2_single_post_content_after'); ?>
+        </div>
+
+        <?php do_action('b2_single_article_after'); ?>
+    </article>
+</div>
